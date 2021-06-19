@@ -9,9 +9,10 @@ class Question extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.all(10),
+      color: Colors.amberAccent,
       child: Text(
         questionText,
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(fontSize: 20, color: Colors.blueGrey),
         textAlign: TextAlign.center,
       ),
     );
