@@ -4,7 +4,6 @@ import 'question.dart';
 import 'answer.dart';
 import './quiz.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -16,20 +15,46 @@ class _MyAppState extends State<MyApp> {
   final _questions = [
     {
       'questionText': 'What\'s your favourite color?',
-      'answers': ['Black', 'Green', 'Blue', 'Red']
+      'answers': [
+        {'text': 'Black', 'score': 10},
+        {'text': 'Green', 'score': 6},
+        {'text': 'Blue', 'score': 8},
+        {'text': 'Red', 'score': 9}
+      ]
     },
     {
       'questionText': 'What\'s your favourite animal?',
-      'answers': ['Tiger', 'Lion', 'Cheetah', 'Cat', 'Dog']
+      'answers': [
+        {'text': 'Tiger', 'score': 5},
+        {'text': 'Lion', 'score': 3},
+        {'text': 'Cat', 'score': 10},
+        {'text': 'Dog', 'score': 8}
+      ]
     },
     {
       'questionText': 'What\'s your favourite weather?',
-      'answers': ['Rainy', 'Sunny', 'Stormy']
+      'answers': [
+        {'text': 'Sunny', 'score': 2},
+        {'text': 'Rainy', 'score': 10},
+        {'text': 'Stormy', 'score': 6},
+        {'text': 'Cloudy', 'score': 8}
+      ]
     },
   ];
   var _qsnIndex = 0;
+  var _totalScore = 0;
 
-  void _answerQuestion() {
+  void _resetQuiz() {
+    setState(() {
+          _qsnIndex = 0;
+          _totalScore = 0;
+       });
+    
+  }
+
+  void _answerQuestion(int score) {
+    _totalScore += score;
+
     setState(() {
       _qsnIndex = _qsnIndex + 1;
     });
@@ -44,6 +69,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //darkTheme: ThemeData.dark(),
       home: Scaffold(
         appBar: AppBar(
           title: Text('My first app'),
@@ -54,7 +80,7 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: _qsnIndex,
                 questions: _questions,
               )
-            : Result(),
+            : Result(_totalScore,_resetQuiz),
       ),
     );
   }
