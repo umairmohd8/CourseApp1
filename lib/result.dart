@@ -8,11 +8,11 @@ class Result extends StatelessWidget {
   //getters
   String get resultPhrase {
     String resultText = 'You did it!';
-    if (resultScore <= 8) {
+    if (resultScore <= 5) {
       resultText = 'You are awesome';
-    } else if (resultScore <= 12) {
+    } else if (resultScore <= 10) {
       resultText = 'You are a cat';
-    } else if (resultScore <= 16) {
+    } else if (resultScore <= 15) {
       resultText = 'You are an awesome catto';
     } else {
       resultText = 'You are a human, eww';
